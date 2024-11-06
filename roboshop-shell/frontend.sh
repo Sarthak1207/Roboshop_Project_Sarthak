@@ -19,4 +19,4 @@ cp /home/ec2-user/Roboshop_Project/roboshop-shell/nginx.conf /etc/nginx/
 
 #Start and Enable nginx service
 systemctl enable nginx
-systemctl start nginx
+systemctl restart nginx

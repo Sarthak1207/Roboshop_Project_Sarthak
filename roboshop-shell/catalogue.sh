@@ -17,7 +17,7 @@ useradd roboshop
 mkdir /app
 
 #Download the application code to create app directory
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws/catalogue-v3.zip
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
 cd /app
 unzip /tmp/catalogue.zip
  

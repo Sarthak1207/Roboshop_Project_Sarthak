@@ -1,6 +1,6 @@
 #setup the mongodb repo file
 #file is placed in roboshop project
-vim /etc/yum.repo.d/mongo.repo
+cp /home/ec2-user/Roboshop_Project/roboshop-shell/mongo.repo /etc/yum.repo.d/
 
 #install mongodb
 dnf install mongodb-org -y
@@ -10,6 +10,3 @@ systemctl enable mongod
 systemctl start mongod
 
 #update listen address from 127.0.0.1 to 0.0.0.0 in /etc/mongod.conf
-
-#rRestart the service to make the changes effected
-systemctl restart mongod

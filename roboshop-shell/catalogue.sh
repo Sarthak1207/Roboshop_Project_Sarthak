@@ -22,7 +22,7 @@ cd /app
 unzip /tmp/catalogue.zip
  
 #Download dependencies
-cd /amp
+cd /app
 npm install
 
 #Install mongodb

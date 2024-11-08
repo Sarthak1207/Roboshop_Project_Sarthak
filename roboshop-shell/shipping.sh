@@ -18,14 +18,10 @@ mvn clean package
 mv target/shipping-1.0.jar shipping.jar
 
 #Setup systemd shipping service
-vim /etc/systemd/system/shipping.service
+cp /home/ec2-user/Roboshop_Project/roboshop-shell/shipping.service /etc/systemd/system/
 
 #Load the service
 systemctl daemon-reload
-
-#start the service
-systemctl enable shipping
-systemctl start shipping
 
 #Install mysql
 dnf install mysql -y
@@ -37,5 +33,6 @@ mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/app-user.sql
 #Load the master data
 mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/master-data.sql
 
-#Service restart
+#start the service
+systemctl enable shipping
 systemctl restart shipping

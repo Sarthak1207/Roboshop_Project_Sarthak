@@ -13,15 +13,14 @@ cd /app
 unzip /tmp/payment.zip
 
 #download the dependencies
-cd /app
 pip3 install -r requirements.txt
 
 #Setup payment service
-vim /etc/systemd/system/payment.service
+cp /home/ec2-user/Roboshop_Project/roboshop-shell/payment.service /etc/systemd/system/
 
 #load the service
 systemctl daemon-reload
 
 #start the service
 systemctl enable payment
-systemctl start payment
+systemctl restart payment

@@ -20,11 +20,11 @@ npm install
 
 #setup the cart service file
 #file is placed in roboshop project
-vim /etc/systemd/system/cart.service
+cp /home/ec2-user/Roboshop_Project/roboshop-shell/cart.service /etc/systemd/system/
 
 #load the service
 systemctl daemon-reload
 
 #Start the service
 systemctl enable cart
-systemctl start cart
+systemctl restart cart

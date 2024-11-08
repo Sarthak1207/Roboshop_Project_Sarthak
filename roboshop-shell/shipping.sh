@@ -10,7 +10,7 @@ mkdir /app
 #download the application code
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
 cd /app
-unzip /tnp/shipping.zip
+unzip /tmp/shipping.zip
 
 #download dependencies
 cd /app

@@ -27,11 +27,11 @@ systemctl daemon-reload
 dnf install mysql -y
 
 #Load schema in database
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/schema.sql
+mysql -h mysql.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/schema.sql
 #Create the user in mysql
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/app-user.sql
+mysql -h mysql.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/app-user.sql
 #Load the master data
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/master-data.sql
+mysql -h mysql.sarthak1207.shop-uroot -pRoboShop@1 < /app/db/master-data.sql
 
 #start the service
 systemctl enable shipping

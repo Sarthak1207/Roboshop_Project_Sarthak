@@ -29,7 +29,7 @@ npm install
 dnf install mongodb-mongosh -y
 
 #Load Master Data of the List of products we want to sell and their quantity information also there in the same master data.
-mongosh --host 172.31.39.192 </app/db/master-data.js
+mongosh --host mongodb.sarthak1207.shop </app/db/master-data.js
 
 #load the service
 systemctl daemon-reload

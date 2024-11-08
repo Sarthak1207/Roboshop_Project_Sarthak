@@ -20,11 +20,11 @@ npm install
 
 #setup systemd user service
 #file is placed in roboshop project
-vim /etc/systemd/system/user.service
+vim /home/ec2-user/Roboshop_Project/roboshop-shell/user.service /etc/systemd/system/
 
 #Load the service
 systemctl daemon-reload
 
 #Start the service
 systemctl enable user
-systemctl start user
+systemctl restart user

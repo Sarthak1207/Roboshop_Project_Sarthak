@@ -19,7 +19,7 @@ go get
 go build
 
 #setup systemd payment service
-cp /home/ec2-user/Roboshop_Project/roboshop-shell/dipatch.service /etc/systemd/system/
+cp /home/ec2-user/Roboshop_Project/roboshop-shell/disspatch.service /etc/systemd/system/
 
 #load the service
 systemctl daemon-reload

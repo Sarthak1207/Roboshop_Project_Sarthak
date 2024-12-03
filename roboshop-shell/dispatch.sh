@@ -5,6 +5,7 @@ dnf install golang -y
 useradd roboshop
 
 #setup application directory
+rm -rf /app
 mkdir /app
 
 #download the application code

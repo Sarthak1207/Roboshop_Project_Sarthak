@@ -1,9 +1,9 @@
-#install mysql server
+echo -e "$color install mysql server $no_color"
 dnf install mysql-server -y
 
-#start mysql service
+echo -e "$color start mysql service $no_color"
 systemctl enable mysqld
 systemctl restart mysqld
 
-#update default root password for mysql-server
+echo -e "$color update default root password for mysql-server $no_color"
 mysql_secure_installation --set-root-pass RoboShop@1

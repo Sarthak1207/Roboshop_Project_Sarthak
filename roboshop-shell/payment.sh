@@ -1,26 +1,26 @@
-#install python 3
+echo -e "$color install python 3 $no_color"
 dnf install python3 gcc python3-devel -y
 
-#add application user
+echo -e "$color add application user $no_color"
 useradd roboshop
 
-#setup app directory
+echo -e "$color setup app directory $no_color"
 mkdir /app
 
-#download the application code
+echo -e "$color download the application code $no_color"
 curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip
 cd /app
 unzip /tmp/payment.zip
 
-#download the dependencies
+echo -e "$color download the dependencies $no_color"
 pip3 install -r requirements.txt
 
-#Setup payment service
+echo -e "$color Setup payment service $no_color"
 cp /home/ec2-user/Roboshop_Project/roboshop-shell/payment.service /etc/systemd/system/
 
-#load the service
+echo -e "$color load the service $no_color"
 systemctl daemon-reload
 
-#start the service
+echo -e "$color start the service $no_color"
 systemctl enable payment
 systemctl restart payment

@@ -1,30 +1,30 @@
-#install golang
+echo -e "$color install golang $no_color"
 dnf install golang -y
 
-#add application user
+echo -e "$color add application user $no_color"
 useradd roboshop
 
-#setup application directory
+echo -e "$color setup application directory $no_color"
 rm -rf /app
 mkdir /app
 
-#download the application code
+echo -e "$color download the application code $no_color"
 curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch-v3.zip
 cd /app
 unzip /tmp/dispatch.zip
 
-#Download the dependencies
+echo -e "$color Download the dependencies $no_color"
 cd /app
 go mod init dispatch
 go get
 go build
 
-#setup systemd payment service
+echo -e "$color setup systemd payment service $no_color"
 cp /home/ec2-user/Roboshop_Project/roboshop-shell/dispatch.service /etc/systemd/system/
 
-#load the service
+echo -e "$color load the service $no_color"
 systemctl daemon-reload
 
-#start the service
+echo -e "$color start the service $no_color"
 systemctl enable dispatch
 systemctl restart dispatch

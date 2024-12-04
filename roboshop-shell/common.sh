@@ -9,13 +9,16 @@ app_prerequsites {
     if [ $? -eq = 0]; then
         useradd roboshop $>>$log_file
     fi
+    status_check $?
     print_heading "setup app directory"
     mkdir /app $>>$log_file
+    status_check $?
 
     print_heading "download the application code"
     curl -L -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip $>>$log_file
     cd /app $>>$log_file
     unzip /tmp/$app_name.zip $>>$log_file
+    status_check $?
 }
 
 print_heading () {

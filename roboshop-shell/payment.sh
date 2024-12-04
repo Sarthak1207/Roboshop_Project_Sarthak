@@ -1,3 +1,6 @@
+#source is used to refer on any script which we want to use in existing script
+source common.sh
+
 echo -e "$color install python 3 $no_color"
 dnf install python3 gcc python3-devel -y
 

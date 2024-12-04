@@ -1,3 +1,6 @@
+#source is used to refer on any script which we want to use in existing script
+source common.sh
+
 echo -e "$color File for setup systemd catalogue service $no_color"
 echo -e "$color File is available in roboshop_project in git repository $no_color"
 cp /home/ec2-user/Roboshop_Project/roboshop-shell/catalogue.service /etc/systemd/system/

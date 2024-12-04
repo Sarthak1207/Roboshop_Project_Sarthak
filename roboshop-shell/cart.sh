@@ -1,3 +1,6 @@
+#source is used to refer on any script which we want to use in existing script
+source common.sh
+
 echo -e "$color install nodejs $no_color"
 dnf module disable nodejs -y
 dnf module enable nodejs:20 -y

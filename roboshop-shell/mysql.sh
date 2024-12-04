@@ -1,3 +1,6 @@
+#source is used to refer on any script which we want to use in existing script
+source common.sh
+
 echo -e "$color install mysql server $no_color"
 dnf install mysql-server -y
 

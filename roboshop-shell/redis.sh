@@ -1,3 +1,6 @@
+#source is used to refer on any script which we want to use in existing script
+source common.sh
+
 echo -e "$color install redis $no_color"
 dnf module disable redis -y
 dnf module enable redis:7 -y

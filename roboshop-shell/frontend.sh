@@ -1,3 +1,6 @@
+#source is used to refer on any script which we want to use in existing script
+source common.sh
+
 echo -e "$color Install nginx $no_color"
 dnf module disable nginx -y
 dnf module enable nginx:1.24 -y

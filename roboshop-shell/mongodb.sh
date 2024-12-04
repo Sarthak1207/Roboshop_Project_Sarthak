@@ -1,3 +1,6 @@
+#source is used to refer on any script which we want to use in existing script
+source common.sh
+
 echo -e "$color setup the mongodb repo file $no_color"
 echo -e "$color file is placed in roboshop project $no_color"
 cp /home/ec2-user/Roboshop_Project/roboshop-shell/mongo.repo /etc/yum.repos.d/

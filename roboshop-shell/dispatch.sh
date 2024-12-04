@@ -19,15 +19,4 @@ go get $>>$log_file
 go build $>>$log_file
 status_check $?
 
-print_heading "setup systemd payment service"
-cp /home/ec2-user/Roboshop_Project/roboshop-shell/dispatch.service /etc/systemd/system/ $>>$log_file
-status_check $?
-
-print_heading "load the service"
-systemctl daemon-reload $>>$log_file
-status_check $?
-
-print_heading "start the service"
-systemctl enable dispatch $>>$log_file
-systemctl restart dispatch $>>$log_file
-status_check $?
+systemd_setup

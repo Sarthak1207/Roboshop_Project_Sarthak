@@ -1,5 +1,7 @@
 #source is used to refer on any script which we want to use in existing script
 source common.sh
+#declaring varibale used in function
+$app_name=frontend
 
 print_heading " Install nginx "
 dnf module disable nginx -y  $>>$log_file
@@ -11,13 +13,13 @@ print_heading " Remove teh default contant that web server is serving "
 rm -rf /usr/share/nginx/html/*  $>>$log_file
 status_check $?
 
-print_heading " Download the frontend content "
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip  $>>$log_file
+print_heading " Download the $app_name content "
+curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip  $>>$log_file
 status_check $?
 
-print_heading " Extract the frontend content "
+print_heading " Extract the $app_name content "
 cd /usr/share/nginx/html  $>>$log_file
-unzip /tmp/frontend.zip  $>>$log_file
+unzip /tmp/$app_name.zip  $>>$log_file
 status_check $?
 
 print_heading " Create nginx reverese proxy configuration to each backend service "

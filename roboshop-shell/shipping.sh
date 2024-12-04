@@ -1,41 +1,55 @@
 #source is used to refer on any script which we want to use in existing script
 source common.sh
 
-echo -e "$color install maven $no_color"
-dnf install maven -y
+print_heading " install maven "
+dnf install maven -y  $>>$log_file
+status_check $?
 
-echo -e "$color add application user $no_color"
-useradd roboshop
+print_heading " add application user "
+useradd roboshop $>>$log_file
+status_check $?
 
-echo -e "$color setup application directory $no_color"
-mkdir /app
+print_heading " setup application directory "
+mkdir /app $>>$log_file
+status_check $?
 
-echo -e "$color download the application code $no_color"
-curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
-cd /app
-unzip /tmp/shipping.zip
+print_heading " download the application code "
+curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip  $>>$log_file
+cd /app  $>>$log_file
+unzip /tmp/shipping.zip  $>>$log_file
+status_check $?
 
-echo -e "$color download dependencies $no_color"
-cd /app
-mvn clean package
-mv target/shipping-1.0.jar shipping.jar
+print_heading " download dependencies "
+cd /app  $>>$log_file
+mvn clean package  $>>$log_file
+mv target/shipping-1.0.jar shipping.jar  $>>$log_file
+status_check $?
 
-echo -e "$color Setup systemd shipping service $no_color"
-cp /home/ec2-user/Roboshop_Project/roboshop-shell/shipping.service /etc/systemd/system/
+print_heading " Setup systemd shipping service "
+cp /home/ec2-user/Roboshop_Project/roboshop-shell/shipping.service /etc/systemd/system/  $>>$log_file
+status_check $?
 
-echo -e "$color Load the service $no_color"
-systemctl daemon-reload
+print_heading " Load the service "
+systemctl daemon-reload  $>>$log_file
+status_check $?
 
-echo -e "$color Install mysql $no_color"
-dnf install mysql -y
+print_heading " Install mysql "
+dnf install mysql -y  $>>$log_file
+status_check $?
 
-echo -e "$color Load schema in database $no_color"
-mysql -h mysql.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/schema.sql
-echo -e "$color Create the user in mysql $no_color"
-mysql -h mysql.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/app-user.sql
-echo -e "$color Load the master data $no_color"
-mysql -h mysql.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/master-data.sql
+print_heading " Load schema in database "
+mysql -h mysql.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/schema.sql  $>>$log_file
+status_check $?
 
-echo -e "$color start the service $no_color"
-systemctl enable shipping
-systemctl restart shipping
+print_heading " Create the user in mysql " 
+mysql -h mysql.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/app-user.sql  $>>$log_file
+status_check $?
+
+print_heading " Load the master data "
+mysql -h mysql.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/master-data.sql  $>>$log_file
+status_check $?
+
+print_heading " start the service "
+systemctl enable shipping  $>>$log_file
+systemctl restart shipping  $>>$log_file
+status_check $?

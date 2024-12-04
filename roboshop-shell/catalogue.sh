@@ -1,44 +1,55 @@
 #source is used to refer on any script which we want to use in existing script
 source common.sh
 
-echo -e "$color File for setup systemd catalogue service $no_color"
-echo -e "$color File is available in roboshop_project in git repository $no_color"
-cp /home/ec2-user/Roboshop_Project/roboshop-shell/catalogue.service /etc/systemd/system/
+print_heading " File for setup systemd catalogue service "
+print_heading " File is available in roboshop_project in git repository "
+cp /home/ec2-user/Roboshop_Project/roboshop-shell/catalogue.service /etc/systemd/system/ $>>$log_file
+status_check $?
 
-echo -e "$color file is placed in roboshop project $no_color"
-cp  /home/ec2-user/Roboshop_Project/roboshop-shell/mongo.repo /etc/yum.repos.d/
+print_heading " file is placed in roboshop project "
+cp  /home/ec2-user/Roboshop_Project/roboshop-shell/mongo.repo /etc/yum.repos.d/ $>>$log_file
+status_check $?
 
-echo -e "$color Install Nodejs $no_color"
-dnf module disable nodejs -y
-dnf module enable nodejs:20 -y
-dnf install nodejs -y
+print_heading " Install Nodejs "
+dnf module disable nodejs -y $>>$log_file
+dnf module enable nodejs:20 -y $>>$log_file
+dnf install nodejs -y $>>$log_file
+status_check $?
 
-echo -e "$color Add application user $no_color"
-useradd roboshop
+print_heading " Add application user "
+useradd roboshop $>>$log_file
+status_check $?
 
-echo -e "$color Create aap directory $no_color"
-mkdir /app
+print_heading " Create aap directory "
+mkdir /app $>>$log_file
+status_check $?
 
-echo -e "$color Download the application code to create app directory $no_color"
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
-cd /app
-unzip /tmp/catalogue.zip
+print_heading " Download the application code to create app directory "
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip $>>$log_file
+cd /app $>>$log_file
+unzip /tmp/catalogue.zip $>>$log_file
+status_check $?
  
-echo -e "$color Download dependencies $no_color"
-cd /app
-npm install
+print_heading " Download dependencies "
+cd /app $>>$log_file
+npm install $>>$log_file
+status_check $?
 
-echo -e "$color Install mongodb $no_color"
-dnf install mongodb-mongosh -y
+print_heading " Install mongodb "
+dnf install mongodb-mongosh -y $>>$log_file
+status_check $?
 
-echo -e "$color Load Master Data of the List of products we want to sell and their quantity information also there in the same master data. $no_color"
-mongosh --host mongodb.sarthak1207.shop </app/db/master-data.js
+print_heading " Load Master Data of the List of products we want to sell and their quantity information also there in the same master data. "
+mongosh --host mongodb.sarthak1207.shop </app/db/master-data.js $>>$log_file
+status_check $?
 
-echo -e "$color load the service $no_color"
-systemctl daemon-reload
+print_heading " load the service "
+systemctl daemon-reload $>>$log_file
+status_check $?
 
-echo -e "$color Start the service $no_color"
-systemctl enable catalogue
-systemctl restart catalogue
+print_heading " Start the service "
+systemctl enable catalogue $>>$log_file
+systemctl restart catalogue $>>$log_file
+status_check $?
 
-echo -e "$color You need to update catalogue server ip address in frontend configuration. Configuration file is /etc/nginx/nginx.conf $no_color"
+print_heading " You need to update catalogue server ip address in frontend configuration. Configuration file is /etc/nginx/nginx.conf "

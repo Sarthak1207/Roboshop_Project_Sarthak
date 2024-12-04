@@ -3,24 +3,31 @@ source common.sh
 
 #declaring varibale used in function
 $app_name=dispatch
+status_check $?
 
-echo -e "$color install golang $no_color"
-dnf install golang -y
+print_heading "install golang"
+dnf install golang -y $>>$log_file
+status_check $?
 
 app_prerequsites
+status_check $?
 
-echo -e "$color Download the dependencies $no_color"
-cd /app
-go mod init dispatch
-go get
-go build
+print_heading "Download the dependencies"
+cd /app $>>$log_file
+go mod init dispatch $>>$log_file
+go get $>>$log_file
+go build $>>$log_file
+status_check $?
 
-echo -e "$color setup systemd payment service $no_color"
-cp /home/ec2-user/Roboshop_Project/roboshop-shell/dispatch.service /etc/systemd/system/
+print_heading "setup systemd payment service"
+cp /home/ec2-user/Roboshop_Project/roboshop-shell/dispatch.service /etc/systemd/system/ $>>$log_file
+status_check $?
 
-echo -e "$color load the service $no_color"
-systemctl daemon-reload
+print_heading "load the service"
+systemctl daemon-reload $>>$log_file
+status_check $?
 
-echo -e "$color start the service $no_color"
-systemctl enable dispatch
-systemctl restart dispatch
+print_heading "start the service"
+systemctl enable dispatch $>>$log_file
+systemctl restart dispatch $>>$log_file
+status_check $?

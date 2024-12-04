@@ -3,21 +3,28 @@ source common.sh
 
 #declaring varibale used in function
 $app_name=payment
+status_check $?
 
-echo -e "$color install python 3 $no_color"
-dnf install python3 gcc python3-devel -y
+print_heading "install python 3"
+dnf install python3 gcc python3-devel -y $>>$log_file
+status_check $?
 
 app_prerequsites
+status_check $?
 
-echo -e "$color download the dependencies $no_color"
-pip3 install -r requirements.txt
+print_heading "download the dependencies"
+pip3 install -r requirements.txt $>>$log_file
+status_check $?
 
-echo -e "$color Setup payment service $no_color"
-cp /home/ec2-user/Roboshop_Project/roboshop-shell/payment.service /etc/systemd/system/
+print_heading "Setup payment service"
+cp /home/ec2-user/Roboshop_Project/roboshop-shell/payment.service /etc/systemd/system/ $>>$log_file
+status_check $?
 
-echo -e "$color load the service $no_color"
-systemctl daemon-reload
+print_heading "load the service"
+systemctl daemon-reload $>>$log_file
+status_check $?
 
-echo -e "$color start the service $no_color"
-systemctl enable payment
-systemctl restart payment
+print_heading "start the service"
+systemctl enable payment $>>$log_file
+systemctl restart payment $>>$log_file
+status_check $?

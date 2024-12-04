@@ -1,12 +1,15 @@
 #source is used to refer on any script which we want to use in existing script
 source common.sh
 
-echo -e "$color install mysql server $no_color"
-dnf install mysql-server -y
+print_heading " install mysql server "
+dnf install mysql-server -y  $>>$log_file
+status_check $?
 
-echo -e "$color start mysql service $no_color"
-systemctl enable mysqld
-systemctl restart mysqld
+print_heading " start mysql service "
+systemctl enable mysqld  $>>$log_file
+systemctl restart mysqld  $>>$log_file
+status_check $?
 
-echo -e "$color update default root password for mysql-server $no_color"
-mysql_secure_installation --set-root-pass RoboShop@1
+print_heading " update default root password for mysql-server "
+mysql_secure_installation --set-root-pass RoboShop@1  $>>$log_file
+status_check $?

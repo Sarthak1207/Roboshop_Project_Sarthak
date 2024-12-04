@@ -3,6 +3,8 @@ source common.sh
 #declaring varibale used in function
 $app_name=catalogue
 
+nodejs_setup
+
 print_heading " file is placed in roboshop project "
 cp  /home/ec2-user/Roboshop_Project/roboshop-shell/mongo.repo /etc/yum.repos.d/ $>>$log_file
 status_check $?

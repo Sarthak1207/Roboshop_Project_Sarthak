@@ -38,16 +38,13 @@ dnf install mysql -y  $>>$log_file
 status_check $?
 
 print_heading " Load schema in database "
-mysql -h mysql.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/schema.sql  $>>$log_file
-status_check $?
-
 print_heading " Create the user in mysql " 
-mysql -h mysql.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/app-user.sql  $>>$log_file
-status_check $?
-
 print_heading " Load the master data "
-mysql -h mysql.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/master-data.sql  $>>$log_file
-status_check $?
+
+for sql_file in schema app-user master-data; do 
+    mysql -h mysql.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/schema.sql  $>>$log_file
+    status_check $?
+done
 
 print_heading " start the service "
 systemctl enable shipping  $>>$log_file

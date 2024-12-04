@@ -30,5 +30,6 @@ status_check () {
     if [ $1 -eq 0 ]; then
         echo -e "\e[32m Success $no_color"
     else
-        echo -e "\e[33m Success $no_color"
+        echo -e "\e[33m Failure $no_color"
+        exit 1
 }

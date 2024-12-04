@@ -32,4 +32,5 @@ status_check () {
     else
         echo -e "\e[33m Failure $no_color"
         exit 1
+    fi
 }

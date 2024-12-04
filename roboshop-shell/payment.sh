@@ -1,19 +1,13 @@
 #source is used to refer on any script which we want to use in existing script
 source common.sh
 
+#declaring varibale used in function
+$app_name=payment
+
 echo -e "$color install python 3 $no_color"
 dnf install python3 gcc python3-devel -y
 
-echo -e "$color add application user $no_color"
-useradd roboshop
-
-echo -e "$color setup app directory $no_color"
-mkdir /app
-
-echo -e "$color download the application code $no_color"
-curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip
-cd /app
-unzip /tmp/payment.zip
+app_prerequsites
 
 echo -e "$color download the dependencies $no_color"
 pip3 install -r requirements.txt

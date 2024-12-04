@@ -1,20 +1,13 @@
 #source is used to refer on any script which we want to use in existing script
 source common.sh
 
+#declaring varibale used in function
+$app_name=dispatch
+
 echo -e "$color install golang $no_color"
 dnf install golang -y
 
-echo -e "$color add application user $no_color"
-useradd roboshop
-
-echo -e "$color setup application directory $no_color"
-rm -rf /app
-mkdir /app
-
-echo -e "$color download the application code $no_color"
-curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch-v3.zip
-cd /app
-unzip /tmp/dispatch.zip
+app_prerequsites
 
 echo -e "$color Download the dependencies $no_color"
 cd /app

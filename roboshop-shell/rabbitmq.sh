@@ -9,7 +9,7 @@ if [ -z "$1" ]; then
 fi
 
 print_heading " Setup rabbitmq repo file "
-cp /home/ec2-user/Roboshop_Project/roboshop-shell/rabbitmq.repo /etc/yum.repos.d/  $>>$log_file
+cp $script_path/rabbitmq.repo /etc/yum.repos.d/  $>>$log_file
 status_check $?
 
 print_heading " Install rabbitmq "

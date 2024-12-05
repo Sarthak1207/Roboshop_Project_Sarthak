@@ -3,7 +3,7 @@ source common.sh
 
 print_heading " setup the mongodb repo file "
 print_heading " file is placed in roboshop project "
-cp /home/ec2-user/Roboshop_Project/roboshop-shell/mongo.repo /etc/yum.repos.d/  $>>$log_file
+cp $script_path/mongo.repo /etc/yum.repos.d/  $>>$log_file
 status_check $?
 
 print_heading " install mongodb "

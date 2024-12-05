@@ -2,7 +2,16 @@
 source common.sh
 
 #declaring varibale used in function
-$app_name=payment
+app_name=payment
+rabiit_mq_pass=$1
+#rabiit_mq_pass=roboshop123
+
+if [ -z "$1" ]; then
+    echo Input my rabbitmq password is missing
+    exit 1
+fi
+
+
 status_check $?
 
 python_setup

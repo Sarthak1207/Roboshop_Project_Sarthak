@@ -1,7 +1,7 @@
 #source is used to refer on any script which we want to use in existing script
 source common.sh
 #declaring varibale used in function
-$app_name=frontend
+app_name=frontend
 
 print_heading " Install nginx "
 dnf module disable nginx -y  $>>$log_file

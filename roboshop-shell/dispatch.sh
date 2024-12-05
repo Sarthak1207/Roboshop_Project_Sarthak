@@ -2,21 +2,13 @@
 source common.sh
 
 #declaring varibale used in function
-$app_name=dispatch
-status_check $?
+app_name=dispatch
+rabiit_mq_pass=$1
+#rabiit_mq_pass=roboshop123
 
-print_heading "install golang"
-dnf install golang -y $>>$log_file
-status_check $?
+if [ -z "$1" ]; then
+    echo Input my rabbitmq password is missing
+    exit 1
+fi
 
-app_prerequsites
-status_check $?
-
-print_heading "Download the dependencies"
-cd /app $>>$log_file
-go mod init dispatch $>>$log_file
-go get $>>$log_file
-go build $>>$log_file
-status_check $?
-
-systemd_setup
+golang_setup

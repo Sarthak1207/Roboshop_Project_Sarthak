@@ -41,6 +41,7 @@ systemd_setup {
     print_heading " setup the $app_name service file "
     print_heading " file is placed in roboshop project "
     cp $script_path/$app_name.service /etc/systemd/system/ $>>$log_file
+    sed -i -e "s/rabiit_mq_pass/${rabiit_mq_pass}/" /etc/systemd/system/$app_name.service $>>$log_file
     status_check $?
 
     print_heading " load the service "
@@ -98,18 +99,23 @@ maven_setup {
     mv target/$app_name-1.0.jar $app_name.jar  $>>$log_file
     status_check $?
 
-    print_heading " Install mysql "
-    dnf install mysql -y  $>>$log_file
+    systemd_setup
+}
+
+golang_setup {
+    print_heading "install golang"
+    dnf install golang -y $>>$log_file
     status_check $?
 
-    print_heading " Load schema in database "
-    print_heading " Create the user in mysql " 
-    print_heading " Load the master data "
+    app_prerequsites
+    status_check $?
 
-    for sql_file in schema app-user master-data; do 
-        mysql -h mysql.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/schema.sql  $>>$log_file
-        status_check $?
-    done
+    print_heading "Download the dependencies"
+    cd /app $>>$log_file
+    go mod init dispatch $>>$log_file
+    go get $>>$log_file
+    go build $>>$log_file
+    status_check $?
 
     systemd_setup
 }

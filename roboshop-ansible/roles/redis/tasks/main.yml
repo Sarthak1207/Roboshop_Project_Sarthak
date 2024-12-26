@@ -1,0 +1,31 @@
+- name: Set Prompt
+  ansible.builtin.shell: set-prompt {{ app_name }}-{{ env }}
+
+- name: Disable default Redis
+  ansible.builtin.shell: dnf module disable redis -y
+
+- name: Enable Redis 7 version
+  ansible.builtin.shell: dnf module enable redis:7 -y
+
+- name: Install Redis
+  ansible.builtin.dnf:
+    name: redis
+    state: installed
+
+- name: Update Redis listen address
+  ansible.builtin.replace:
+    path: /etc/redis/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Update Protected on redis config
+  ansible.builtin.lineinfile:
+    path: /etc/redis/redis.conf
+    regexp: 'protected-mode'
+    replace: protected-mode no
+
+- name: Start Redis
+  ansible.builtin.systemd_service:
+    name: redis
+    state: restarted
+    enabled: yes

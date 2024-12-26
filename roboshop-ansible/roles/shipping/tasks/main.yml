@@ -1,0 +1,28 @@
+- name: Set Prompt
+  ansible.builtin.shell: set-prompt {{ app_name }}-{{ env }}
+
+- name: Load Moven
+  ansible.builtin.include.role:
+    name: common
+    task_from: maven_setup
+
+- name: Install Mysql Server
+  ansible.builtin.dnf:
+    name: mysql
+    state: installed
+
+- name: Load the Sql File
+  ansible.builtin.shell: mysql -h mysql-{{ env }}.sarthak1207.shop -uroot -pRoboShop@1 < /app/db/{{ item }}.sql
+  loop:
+    - schema 
+    - app-user 
+    - master-data
+
+- name: Restart Shipping
+  ansible.builtin.systemd_service:
+    name: shipping
+    state: restarted
+
+# print_heading "Restart shipping service"
+# systemctl restart shipping $>>$log_file
+# status_check $? 

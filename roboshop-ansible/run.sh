@@ -1,7 +1,7 @@
 git pull
 if [ $# -ne 2]; then
     echo "Input Missing"
-    echo "Usage run.sh <component-name> <env>"
+    echo "Usage bash run.sh <component-name> <env>"
     exit 1
 fi
 

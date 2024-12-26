@@ -7,14 +7,36 @@
 - name: Install Nginx
   ansible.builtin.dnf:
     name: nginx
-    state: present
+    state: installed
 
 - name: Copy nginx config file
   ansible.builtin.template:
     src: nginx.conf
     dest: /etc/nginx/nginx.config
 
+- name: Remove the application directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
+
+- name: Create a application directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
+
+- name: Download and extract a zip file
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
+
 - name: Start nginx
   ansible.builtin.systemd_service:
     name: nginx
-    state: started
+    state: restarted
+    enabled: yes
+
+# #source is used to refer on any script which we want to use in existing script
+# source common.sh
+# #declaring varibale used in function
+# app_name=frontend

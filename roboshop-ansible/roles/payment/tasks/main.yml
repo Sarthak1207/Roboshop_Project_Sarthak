@@ -1,0 +1,7 @@
+- name: Set Prompt
+  ansible.builtin.shell: set-prompt {{ app_name }}-{{ env }}
+
+- name: Load Python setup
+  ansible.builtin.include.role:
+    name: common
+    task_from: python_setup

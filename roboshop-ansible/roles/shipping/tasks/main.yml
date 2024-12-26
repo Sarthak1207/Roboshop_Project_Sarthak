@@ -23,6 +23,4 @@
     name: shipping
     state: restarted
 
-# print_heading "Restart shipping service"
-# systemctl restart shipping $>>$log_file
-# status_check $? 
+##Password hardcode we will update later

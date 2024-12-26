@@ -1,0 +1,29 @@
+- name: Copy the service file
+  ansible.builtin.template:
+    src: "{{ app_name }}.service"
+    dest:  /etc/systemd/system/{{ app_name }}.service
+
+- name: Start the application service
+  ansible.builtin.systemd_service:
+    name: "{{ app_name }}"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
+
+# systemd_setup {
+#     print_heading " setup the $app_name service file "
+#     print_heading " file is placed in roboshop project "
+#     cp $script_path/$app_name.service /etc/systemd/system/ $>>$log_file
+#     sed -i -e "s/rabiit_mq_pass/${rabiit_mq_pass}/" /etc/systemd/system/$app_name.service $>>$log_file
+#     status_check $?
+
+#     print_heading " load the service "
+#     systemctl daemon-reload $>>$log_file
+#     status_check $?
+
+#     print_heading " Start the service "
+#     systemctl enable $app_name $>>$log_file
+#     systemctl restart $app_name $>>$log_file
+#     status_check $?
+# }

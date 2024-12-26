@@ -1,12 +1,8 @@
 # #source is used to refer on any script which we want to use in existing script
 # source common.sh
 
-
-
-# print_heading " start and enable mongodb service "
-# systemctl enable mongod  $>>$log_file
-# systemctl restart mongod  $>>$log_file
-# status_check $?
+- name: Set Prompt
+  ansible.builtin.shell: set-prompt {{ app_name }}-{{ env }}
 
 - name: Copy mongodb repo file
   ansible.builtin.copy:

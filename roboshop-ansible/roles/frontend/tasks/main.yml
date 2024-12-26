@@ -1,3 +1,6 @@
+- name: Set Prompt
+  ansible.builtin.shell: set-prompt {{ app_name }}-{{ env }}
+
 - name: Disable default Nginx
   ansible.builtin.shell: dnf module disable nginx -y
 

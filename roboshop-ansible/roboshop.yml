@@ -1,3 +1,10 @@
+- name: Roboshop App Playbook
+  hosts: all
+  become: yes
+  roles:
+    - "{{ app_name}}"
+
+
 
 
 # #source is used to refer on any script which we want to use in existing script

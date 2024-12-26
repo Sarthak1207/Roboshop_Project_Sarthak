@@ -5,3 +5,22 @@
   ansible.builtin.include.role:
     name: common
     task_from: nodejs
+
+
+# print_heading " file is placed in roboshop project "
+# cp  $script_path/mongo.repo /etc/yum.repos.d/ $>>$log_file
+# status_check $?
+
+# print_heading " Install mongodb "
+# dnf install mongodb-mongosh -y $>>$log_file
+# status_check $?
+
+# print_heading " Load Master Data of the List of products we want to sell and their quantity information also there in the same master data. "
+# mongosh --host mongodb.sarthak1207.shop </app/db/master-data.js $>>$log_file
+# status_check $?
+
+# print_heading " restart the service "
+# systemctl restart catalogue $>>$log_file
+# status_check $?
+
+# print_heading " You need to update catalogue server ip address in frontend configuration. Configuration file is /etc/nginx/nginx.conf "

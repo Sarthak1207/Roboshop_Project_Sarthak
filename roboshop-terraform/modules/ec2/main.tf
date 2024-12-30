@@ -32,7 +32,9 @@ resource "aws_instance" "instance" {
   tags = {
     Name  =    "${var.component_name}-${var.env}"
   }
+}
 
+resource "null_resource" "ansible_playbook" {
   provisioner "remote-exec" {
     connection {
       type     = "ssh"

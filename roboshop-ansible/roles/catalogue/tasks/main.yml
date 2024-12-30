@@ -1,12 +1,7 @@
 - name: Load Nodejs
-  ansible.builtin.include.role:
+  ansible.builtin.include_role:
     name: common
     tasks_from: nodejs.yml
-
-# - name: Load NodeJS
-#   ansible.builtin.include_role:
-#     name: common
-#     tasks_from: nodejs
 
 - name: Copy Mongodb repo file
   ansible.builtin.copy:

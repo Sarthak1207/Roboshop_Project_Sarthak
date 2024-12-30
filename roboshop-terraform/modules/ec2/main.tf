@@ -1,8 +1,6 @@
 resource "aws_security_group" "sg" {
     name        = "$(var.component_name)-$(var.env)-sg"
     description = "Allow TLS inbound traffic and all outbound traffic"
-    #vpc_id = aws_instance.vpc_id
-    vpc_id      = aws_vpc.main.id  
 
     ingress {
         from_port        = var.app_port

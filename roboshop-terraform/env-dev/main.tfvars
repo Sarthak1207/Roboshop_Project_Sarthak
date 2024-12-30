@@ -1,4 +1,6 @@
 env = "dev"
+domain_name = "sarthak1207.shop"
+zone_id = "Z00485513VTKYH807UIM0"
 
 db_instances = {
     mongodb    = {

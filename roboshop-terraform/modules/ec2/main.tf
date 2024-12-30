@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg" {
-    name        = "$(var.component_name)-$(var.env)-sg"
+    name        = "${var.component_name}-${var.env}-sg"
     description = "Allow TLS inbound traffic and all outbound traffic"
 
     ingress {
@@ -30,6 +30,6 @@ resource "aws_instance" "instance" {
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.sg.id]
   tags = {
-    Name  =    "$(var.component_name)-$(var.env)"
+    Name  =    "${var.component_name}-${var.env}"
   }
 }

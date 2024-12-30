@@ -1,5 +1,5 @@
 - name: Add application user
-  ansible.builtin.user
+  ansible.builtin.user:
   - name: roboshop
 
 - name: Remove the application directory

@@ -32,11 +32,17 @@ resource "aws_instance" "instance" {
   tags = {
     Name  =    "${var.component_name}-${var.env}"
   }
-}
 
-provisioner "local-exec" {
-  command = <<EOF
-  cd /home/ec2-user/Roboshop_Project_Sarthak/roboshop-ansible
-  ansible-playbook -i ${self.private_id}" -e ansible_user=ec2_user -e app_name${var.component_name} -e env=$}|-e ansible_password=Devops321 roboshop.yml
-  EOL
+  provisioner "remote-exec" {
+    connection {
+      type     = "ssh"
+      user     = "ec2-user"
+      password = "DevOps321"
+      host     = self.private_ip
+    }
+    inline = [
+      "sudo labauto ansible",
+      "ansible-pull -i localhost, -U https://github.com/Sarthak1207/Roboshop_Project_Sarthak/ roboshop-ansible/roboshop.yml -e env=${var.env} -e app_name=${var.component_name}"
+    ]
+  }
 }

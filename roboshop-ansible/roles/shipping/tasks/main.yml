@@ -1,7 +1,7 @@
 - name: Load Moven
   ansible.builtin.include_role:
     name: common
-    task_from: maven_setup.yml
+    tasks_from: maven_setup.yml
 
 - name: Install Mysql Server
   ansible.builtin.dnf:

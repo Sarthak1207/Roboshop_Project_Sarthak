@@ -5,7 +5,7 @@
 
 - name: Load app_prerequsites
   ansible.builtin.include_tasks:
-    file: app_prerequites.yml
+    file: app_prerequsites.yml
 
 - name: Download the dependencies
   ansible.builtin.shell: go mod init dispatch; go get; go build

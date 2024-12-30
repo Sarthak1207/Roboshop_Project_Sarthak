@@ -33,3 +33,10 @@ resource "aws_instance" "instance" {
     Name  =    "${var.component_name}-${var.env}"
   }
 }
+
+provisioner "local-exec" {
+  command = <<EOF
+  cd /home/ec2-user/Roboshop_Project_Sarthak/roboshop-ansible
+  ansible-playbook -i ${self.private_id}" -e ansible_user=ec2_user -e app_name${var.component_name} -e env=$}|-e ansible_password=Devops321 roboshop.yml
+  EOL
+}

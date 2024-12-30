@@ -1,6 +1,6 @@
 resource "aws_security_group" "sg" {
     name        = "${var.component_name}-${var.env}-sg"
-    description = "Allow TLS inbound traffic and all outbound traffic"
+    description = "Inbound allow for ${var.component_name}"
 
     ingress {
         from_port        = var.app_port

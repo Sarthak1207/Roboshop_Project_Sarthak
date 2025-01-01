@@ -8,11 +8,6 @@
     name: vault
     state: installed
 
-# - name: Install Vault
-#   ansible.builtin.dnf:
-#     name: vault
-#     state: installed
-
 - name: Copy Vault Config
   ansible.builtin.copy:
     src: vault.hcl

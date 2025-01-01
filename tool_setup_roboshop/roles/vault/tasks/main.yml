@@ -6,7 +6,7 @@
 - name: install Vault
   ansible.builtin.dnf:
     name: Vault
-    syaye: Installed
+    syaye: installed
 
 - name: Copy Vault Config
   ansible.builtin.copy:

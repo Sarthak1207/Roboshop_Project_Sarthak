@@ -1,5 +1,5 @@
 - name: Download hashicorp repo file
-  ansible.builtin.get_file:
+  ansible.builtin.get_urls:
     url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
     dest: /etc/yum.repos.d/vault.repo
 

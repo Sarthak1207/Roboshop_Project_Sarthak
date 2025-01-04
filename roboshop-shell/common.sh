@@ -17,9 +17,9 @@ app_prerequsites {
     status_check $?
 
     print_heading "download the application code"
-    curl -L -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip $>>$log_file
+    curl -L -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component-v3.zip $>>$log_file
     cd /app $>>$log_file
-    unzip /tmp/$app_name.zip $>>$log_file
+    unzip /tmp/$component.zip $>>$log_file
     status_check $?
 }
 
@@ -38,10 +38,10 @@ status_check () {
 }
 
 systemd_setup {
-    print_heading " setup the $app_name service file "
+    print_heading " setup the $component service file "
     print_heading " file is placed in roboshop project "
-    cp $script_path/$app_name.service /etc/systemd/system/ $>>$log_file
-    sed -i -e "s/rabiit_mq_pass/${rabiit_mq_pass}/" /etc/systemd/system/$app_name.service $>>$log_file
+    cp $script_path/$component.service /etc/systemd/system/ $>>$log_file
+    sed -i -e "s/rabiit_mq_pass/${rabiit_mq_pass}/" /etc/systemd/system/$component.service $>>$log_file
     status_check $?
 
     print_heading " load the service "
@@ -49,8 +49,8 @@ systemd_setup {
     status_check $?
 
     print_heading " Start the service "
-    systemctl enable $app_name $>>$log_file
-    systemctl restart $app_name $>>$log_file
+    systemctl enable $component $>>$log_file
+    systemctl restart $component $>>$log_file
     status_check $?
 }
 
@@ -96,7 +96,7 @@ maven_setup {
     print_heading " download dependencies "
     cd /app  $>>$log_file
     mvn clean package  $>>$log_file
-    mv target/$app_name-1.0.jar $app_name.jar  $>>$log_file
+    mv target/$component-1.0.jar $component.jar  $>>$log_file
     status_check $?
 
     systemd_setup

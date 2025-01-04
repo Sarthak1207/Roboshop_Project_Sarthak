@@ -2,7 +2,7 @@
 source common.sh
 
 #declaring varibale used in function
-app_name=payment
+component=payment
 rabiit_mq_pass=$1
 #rabiit_mq_pass=roboshop123
 

@@ -22,15 +22,15 @@ provider "vault" {
 variable "vault_token" {}
 
 
-resource "vault_mount" "roboshop-dev" {
-  path        = "roboshop-dev"
+resource "vault_mount" "roboshop-dev2" {
+  path        = "roboshop-dev2"
   type        = "kv"
   options     = { version = "2" }
   description = "RoboShop Dev Secrets"
 }
 
-resource "vault_generic_secret" "roboshop-dev" {
-    path = "${vault_mount.roboshop-dev.path}/frontend" 
+resource "vault_generic_secret" "roboshop-dev2" {
+    path = "${vault_mount.roboshop-dev2.path}/frontend" 
     data_json = <<EOT
 {
     "catalogue_url": "https://catalogue-dev..sarthak1207.shop:8200",

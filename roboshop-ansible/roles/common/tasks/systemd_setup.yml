@@ -1,11 +1,11 @@
 - name: Copy the service file
   ansible.builtin.template:
-    src: "{{ app_name }}.service"
-    dest:  /etc/systemd/system/{{ app_name }}.service
+    src: "{{ component }}.service"
+    dest:  /etc/systemd/system/{{ component }}.service
 
 - name: Start the application service
   ansible.builtin.systemd_service:
-    name: "{{ app_name }}"
+    name: "{{ component }}"
     state: restarted
     enabled: yes
     daemon_reload: yes

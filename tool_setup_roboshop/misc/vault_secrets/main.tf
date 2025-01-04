@@ -47,7 +47,7 @@ resource "vault_generic_secret" "catalogue" {
     data_json = <<EOT
 {
     "MONGO": "true"
-    "MONGO_URL": "mongodb://mongodb-{{ env }}.sarthak1207.shop:27017/catalogue"
+    "MONGO_URL": "mongodb://mongodb-dev.sarthak1207.shop:27017/catalogue"
 
 }
 EOT

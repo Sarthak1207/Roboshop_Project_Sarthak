@@ -4,13 +4,13 @@ Description=Payment Service
 [Service]
 User=root
 WorkingDirectory=/app
-Environment=CART_HOST={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:CART_HOST token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}; }
-Environment=CART_PORT={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:CART_PORT token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}; }
-Environment=USER_HOST={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:USER_HOST token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}; }
-Environment=USER_PORT={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:USER_PORT token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}; }
-Environment=AMQP_HOST={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:AMQP_HOST token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}; }
-Environment=AMQP_USER={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:AMQP_USER token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}; }
-Environment=AMQP_PASS={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:AMQP_PASS token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}; }
+Environment=CART_HOST={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:CART_HOST token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}
+Environment=CART_PORT={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:CART_PORT token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}
+Environment=USER_HOST={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:USER_HOST token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}
+Environment=USER_PORT={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:USER_PORT token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}
+Environment=AMQP_HOST={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:AMQP_HOST token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}
+Environment=AMQP_USER={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:AMQP_USER token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}
+Environment=AMQP_PASS={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/payment:AMQP_PASS token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}
 
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
 ExecStop=/bin/kill -9 $MAINPID

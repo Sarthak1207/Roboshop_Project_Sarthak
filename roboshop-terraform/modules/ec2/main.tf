@@ -44,7 +44,7 @@ resource "null_resource" "ansible_playbook" {
     }
     inline = [
       "sudo labauto ansible",
-      "ansible-pull -i localhost, -U https://github.com/Sarthak1207/Roboshop_Project_Sarthak/ roboshop-ansible/roboshop.yml -e env=${var.env} -e component=${var.component_name}"
+      "ansible-pull -i localhost, -U https://github.com/Sarthak1207/Roboshop_Project_Sarthak/ roboshop-ansible/roboshop.yml -e env=${var.env} -e component=${var.component_name} -e vault_token=${var.vault_token}"
     ]
   }
 }

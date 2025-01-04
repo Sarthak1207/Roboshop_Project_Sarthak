@@ -118,3 +118,4 @@ resource "vault_generic_secret" "rabbitmq" {
 }
 EOT
 }
+

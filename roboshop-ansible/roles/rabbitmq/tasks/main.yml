@@ -16,8 +16,8 @@
 
 - name: Add rabbitmq user
   community.rabbitmq.rabbitmq_user:
-    user: roboshop
-    password: roboshop123
+    user: "{{ lookup('hashi_vault', 'roboshop-{{ env }}/data/rabbitmq:user token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}"
+    password: "{{ lookup('hashi_vault', 'roboshop-{{ env }}/data/rabbitmq:password token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}"
     vhost: /
     configure_priv: .*
     read_priv: .*

@@ -5,18 +5,6 @@ terraform {
         region = "us-east-1"
     }
 }
-provider "vault" {
-    address = "http://vault-internal.sarthak1207.shop:8200"
-    token = var.vault_token
-    skip_tls_verify = true
-    #auth_login {
-    #path = "auth/userpass/login/${var.login_username}"
-
-    #parameters = {
-    #    password = var.login_password
-    #}
-  #}
-}
 
 
 variable "vault_token" {}

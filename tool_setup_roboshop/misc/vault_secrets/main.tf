@@ -119,8 +119,8 @@ resource "vault_generic_secret" "rabbitmq" {
 EOT
 }
 
-resource "vault_mount" "infra-Secrets" {
-  path        = "infra-Secrets"
+resource "vault_mount" "infra-secrets" {
+  path        = "infra-secrets"
   type        = "kv"
   options     = { version = "1" }
   description = "My infra Secrets"

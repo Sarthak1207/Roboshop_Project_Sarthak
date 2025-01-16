@@ -5,6 +5,7 @@ variable tools {
             volume_size = 20
             instance_type = "t2.micro"
         }
+
     }
 }
 

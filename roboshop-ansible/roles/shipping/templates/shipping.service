@@ -3,8 +3,8 @@ Description=Shipping Service
 
 [Service]
 User=roboshop
-Environment=CART_ENDPOINT={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/shipping:CART_ENDPOINT token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}; }
-Environment=DB_HOST={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/shipping:DB_HOST token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}; }
+Environment=CART_ENDPOINT={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/shipping:CART_ENDPOINT token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}
+Environment=DB_HOST={{ lookup('hashi_vault', 'roboshop-{{ env }}/data/shipping:DB_HOST token={{ vault_token }} url=http://vault-internal.sarthak1207.shop:8200') }}
 ExecStart=/bin/java -jar /app/shipping.jar
 SyslogIdentifier=shipping
 
